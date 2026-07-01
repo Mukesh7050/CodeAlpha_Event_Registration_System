@@ -8,6 +8,9 @@ A responsive Full Stack Event Registration System developed as part of the **Cod
 
 ## 📸 Project Preview
 
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/c2768965-169a-4c76-aa8c-f0291ae8167d" />
+
 > Screenshots will be added soon.
 
 ---
