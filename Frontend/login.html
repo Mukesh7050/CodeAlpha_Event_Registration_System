@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | EventHub</title>
+
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+
+        <h1>EventHub</h1>
+
+        <p>
+
+            Welcome Back!
+
+            Login to manage your event registrations.
+
+        </p>
+
+        <ul>
+
+            <li>✔ Secure Login</li>
+
+            <li>✔ View Registered Events</li>
+
+            <li>✔ Cancel Registration</li>
+
+            <li>✔ Explore New Events</li>
+
+        </ul>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <h2>Login</h2>
+
+            <p>Enter your account details</p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter Email"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter Password"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="loginBtn">
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <div id="message"></div>
+
+            <p class="signup-link">
+
+                Don't have an account?
+
+                <a href="signup.html">
+
+                    Signup
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="./js/login.js"></script>
+
+</body>
+
+</html>

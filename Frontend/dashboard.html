@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | EventHub</title>
+
+    <link rel="stylesheet" href="./css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                EventHub
+
+            </div>
+
+            <!-- Mobile Menu -->
+
+            <div class="menu-btn" id="menuBtn">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+            <!-- Navigation -->
+
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="#events">Events</a></li>
+
+                <li><a href="#registrations">My Registrations</a></li>
+
+                <li>
+
+                    <button id="logoutBtn">
+
+                        Logout
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <h1>
+
+                Welcome,
+
+                <span id="userName">
+
+                    User
+
+                </span>
+
+                👋
+
+            </h1>
+
+            <p>
+
+                Manage your registrations, discover upcoming events and
+                participate in exciting workshops.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <h2 id="registeredCount">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Registered Events
+
+            </p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-ticket"></i>
+
+            <h2 id="availableCount">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Available Events
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ================= EVENTS ================= -->
+
+    <section class="section" id="events">
+
+        <div class="section-title">
+
+            <h2>
+
+                Available Events
+
+            </h2>
+
+        </div>
+
+        <div id="eventContainer">
+
+        </div>
+
+    </section>
+
+    <!-- ================= REGISTRATIONS ================= -->
+
+    <section class="section" id="registrations">
+
+        <div class="section-title">
+
+            <h2>
+
+                My Registrations
+
+            </h2>
+
+        </div>
+
+        <div id="registrationContainer">
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>EventHub</h3>
+
+        <p>
+
+            Developed by Mukesh Kumar ❤️
+
+        </p>
+
+    </footer>
+
+    <script src="./js/dashboard.js"></script>
+
+</body>
+
+</html>
