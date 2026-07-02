@@ -96,8 +96,7 @@ logoutBtn.addEventListener("click", () => {
 // Load Available Events
 // =====================================
 
-const BASE_URL = "https://codealpha-event-registration-system-qxlu.onrender.com";
-
+const API_URL = "https://codealpha-event-registration-system-qxlu.onrender.com/api/events";
 let allEvents = [];
 
 async function loadEvents() {

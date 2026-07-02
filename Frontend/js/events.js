@@ -7,7 +7,7 @@ async function loadEvents() {
 
     try {
 
-        const response = await fetch(`${BASE_URL}/api/events`);
+        const response = await fetch(`${API_URL}/api/events`);
 
         const events = await response.json();
 
