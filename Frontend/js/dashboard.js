@@ -96,7 +96,7 @@ logoutBtn.addEventListener("click", () => {
 // Load Available Events
 // =====================================
 
-const API_URL = "http://localhost:5000/api/events";
+const BASE_URL = "https://codealpha-event-registration-system-qxlu.onrender.com";
 
 let allEvents = [];
 
@@ -137,7 +137,7 @@ async function loadEvents() {
     const registeredEvents = new Set();
 
     const registrationResponse = await fetch(
-      "http://localhost:5000/api/registrations/my",
+      "https://codealpha-event-registration-system-qxlu.onrender.com/api/registrations/my",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -218,7 +218,7 @@ document.addEventListener("click", async (e) => {
   const eventId = e.target.dataset.id;
 
   try {
-    const response = await fetch("http://localhost:5000/api/registrations", {
+    const response = await fetch("https://codealpha-event-registration-system-qxlu.onrender.com/api/registrations", {
       method: "POST",
 
       headers: {
@@ -254,7 +254,7 @@ document.addEventListener("click", async (e) => {
 
 async function loadRegistrations() {
   try {
-    const response = await fetch("http://localhost:5000/api/registrations/my", {
+    const response = await fetch("https://codealpha-event-registration-system-qxlu.onrender.com/api/registrations/my", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -318,7 +318,7 @@ document.addEventListener("click", async (e) => {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/registrations/${registrationId}`,
+      `https://codealpha-event-registration-system-qxlu.onrender.com/api/registrations/${registrationId}`,
       {
         method: "DELETE",
 

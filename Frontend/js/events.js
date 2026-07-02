@@ -1,5 +1,4 @@
-const API_URL = "http://localhost:5000/api/events";
-
+const BASE_URL = "https://codealpha-event-registration-system-qxlu.onrender.com";
 // ==========================
 // Load Events
 // ==========================
@@ -8,7 +7,7 @@ async function loadEvents() {
 
     try {
 
-        const response = await fetch(API_URL);
+        const response = await fetch(`${BASE_URL}/api/events`);
 
         const events = await response.json();
 
