@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 dotenv.config();
-console.log("JWT_SECRET =", process.env.JWT_SECRET);
+
 
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");

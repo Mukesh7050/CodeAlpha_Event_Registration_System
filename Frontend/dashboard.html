@@ -1,198 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard | EventHub</title>
 
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/dashboard.css" />
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
 
-</head>
+  <!-- Toast Notification -->
 
-<body>
+  <div id="toast" class="toast">
+    <span id="toastMessage"></span>
+  </div>
 
+  <body>
     <!-- ================= NAVBAR ================= -->
 
     <header>
+      <nav class="navbar">
+        <div class="logo">EventHub</div>
 
-        <nav class="navbar">
+        <!-- Mobile Menu -->
 
-            <div class="logo">
+        <div class="menu-btn" id="menuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
 
-                EventHub
+        <!-- Navigation -->
 
-            </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
 
-            <!-- Mobile Menu -->
+          <li><a href="#events">Events</a></li>
 
-            <div class="menu-btn" id="menuBtn">
+          <li><a href="#registrations">My Registrations</a></li>
 
-                <i class="fa-solid fa-bars"></i>
-
-            </div>
-
-            <!-- Navigation -->
-
-            <ul class="nav-links" id="navLinks">
-
-                <li><a href="index.html">Home</a></li>
-
-                <li><a href="#events">Events</a></li>
-
-                <li><a href="#registrations">My Registrations</a></li>
-
-                <li>
-
-                    <button id="logoutBtn">
-
-                        Logout
-
-                    </button>
-
-                </li>
-
-            </ul>
-
-        </nav>
-
+          <li>
+            <button id="logoutBtn">Logout</button>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- ================= HERO ================= -->
 
+    <!-- ================= HERO ================= -->
+
     <section class="hero">
+      <div class="hero-left">
+        <h3 id="greeting">👋 Welcome Back</h3>
 
-        <div class="hero-left">
+        <h1 id="userName">User</h1>
 
-            <h1>
-
-                Welcome,
-
-                <span id="userName">
-
-                    User
-
-                </span>
-
-                👋
-
-            </h1>
-
-            <p>
-
-                Manage your registrations, discover upcoming events and
-                participate in exciting workshops.
-
-            </p>
-
-        </div>
-
+        <p id="heroMessage">Ready to discover amazing events today?</p>
+      </div>
     </section>
 
     <!-- ================= STATS ================= -->
 
     <section class="stats">
+      <div class="stat-card">
+        <i class="fa-solid fa-calendar-days"></i>
 
-        <div class="stat-card">
+        <h2 id="registeredCount">0</h2>
 
-            <i class="fa-solid fa-calendar-days"></i>
+        <p>Registered Events</p>
+      </div>
 
-            <h2 id="registeredCount">
+      <div class="stat-card">
+        <i class="fa-solid fa-ticket"></i>
 
-                0
+        <h2 id="availableCount">0</h2>
 
-            </h2>
-
-            <p>
-
-                Registered Events
-
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <i class="fa-solid fa-ticket"></i>
-
-            <h2 id="availableCount">
-
-                0
-
-            </h2>
-
-            <p>
-
-                Available Events
-
-            </p>
-
-        </div>
-
+        <p>Available Events</p>
+      </div>
     </section>
 
     <!-- ================= EVENTS ================= -->
 
     <section class="section" id="events">
+      <div class="section-title">
+        <h2>Available Events</h2>
+      </div>
 
-        <div class="section-title">
-
-            <h2>
-
-                Available Events
-
-            </h2>
-
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="🔍 Search Events" />
         </div>
 
-        <div id="eventContainer">
-
+        <div class="filter-box">
+          <select id="locationFilter">
+            <option value="all">📍 All Locations</option>
+          </select>
         </div>
+      </div>
 
+      <div id="eventContainer"></div>
     </section>
 
     <!-- ================= REGISTRATIONS ================= -->
 
     <section class="section" id="registrations">
+      <div class="section-title">
+        <h2>My Registrations</h2>
+      </div>
 
-        <div class="section-title">
-
-            <h2>
-
-                My Registrations
-
-            </h2>
-
-        </div>
-
-        <div id="registrationContainer">
-
-        </div>
-
+      <div id="registrationContainer"></div>
     </section>
 
     <!-- ================= FOOTER ================= -->
 
     <footer>
+      <h3>EventHub</h3>
 
-        <h3>EventHub</h3>
-
-        <p>
-
-            Developed by Mukesh Kumar ❤️
-
-        </p>
-
+      <p>Developed by Mukesh Kumar ❤️</p>
     </footer>
 
     <script src="./js/dashboard.js"></script>
-
-</body>
-
+  </body>
 </html>

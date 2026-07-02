@@ -9,11 +9,28 @@ const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!token || !user) {
+  alert("Please login first!");
 
-    alert("Please login first!");
+  window.location.href = "login.html";
+}
 
-    window.location.href = "login.html";
+// =====================================
+// Toast Notification
+// =====================================
 
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  const toastMessage = document.getElementById("toastMessage");
+
+  toastMessage.innerText = message;
+
+  toast.className = "toast " + type;
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 }
 
 // ---------- Show User Name ----------
@@ -22,6 +39,29 @@ const userName = document.getElementById("userName");
 
 userName.textContent = user.name;
 
+// =====================================
+// Greeting
+// =====================================
+
+const greeting = document.getElementById("greeting");
+const heroMessage = document.getElementById("heroMessage");
+
+const hour = new Date().getHours();
+
+if (hour >= 5 && hour < 12) {
+  greeting.innerHTML = "🌞 Good Morning,";
+
+  heroMessage.innerHTML = "Start your day by exploring exciting events.";
+} else if (hour >= 12 && hour < 17) {
+  greeting.innerHTML = "☀ Good Afternoon,";
+
+  heroMessage.innerHTML = "Don't miss today's amazing opportunities.";
+} else {
+  greeting.innerHTML = "🌙 Good Evening,";
+
+  heroMessage.innerHTML = "Relax and discover upcoming events.";
+}
+
 // ---------- Hamburger Menu ----------
 
 const menuBtn = document.getElementById("menuBtn");
@@ -29,11 +69,8 @@ const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
 menuBtn.addEventListener("click", () => {
-
-    navLinks.classList.toggle("active");
-
+  navLinks.classList.toggle("active");
 });
-
 
 // =====================================
 // Logout
@@ -42,21 +79,17 @@ menuBtn.addEventListener("click", () => {
 const logoutBtn = document.getElementById("logoutBtn");
 
 logoutBtn.addEventListener("click", () => {
+  const confirmLogout = confirm("Are you sure you want to logout?");
 
-    const confirmLogout = confirm("Are you sure you want to logout?");
+  if (confirmLogout) {
+    localStorage.removeItem("token");
 
-    if (confirmLogout) {
+    localStorage.removeItem("user");
 
-        localStorage.removeItem("token");
+    alert("Logout Successful");
 
-        localStorage.removeItem("user");
-
-        alert("Logout Successful");
-
-        window.location.href = "login.html";
-
-    }
-
+    window.location.href = "login.html";
+  }
 });
 
 // =====================================
@@ -65,27 +98,83 @@ logoutBtn.addEventListener("click", () => {
 
 const API_URL = "http://localhost:5000/api/events";
 
+let allEvents = [];
+
 async function loadEvents() {
+  try {
+    const response = await fetch(API_URL);
 
-    try {
+    allEvents = await response.json();
 
-        const response = await fetch(API_URL);
+    const events = allEvents;
 
-        const events = await response.json();
+    // Populate Location Filter
 
-        const eventContainer = document.getElementById("eventContainer");
+    const locationFilter = document.getElementById("locationFilter");
 
-        const availableCount = document.getElementById("availableCount");
+    locationFilter.innerHTML = '<option value="all">📍 All Locations</option>';
 
-        eventContainer.innerHTML = "";
+    const locations = [...new Set(events.map((event) => event.location))];
 
-        availableCount.textContent = events.length;
+    locations.forEach((location) => {
+      locationFilter.innerHTML += `
+        <option value="${location}">
+            ${location}
+        </option>
+    `;
+    });
 
-        events.forEach(event => {
+    const eventContainer = document.getElementById("eventContainer");
 
-            eventContainer.innerHTML += `
+    const availableCount = document.getElementById("availableCount");
 
-            <div class="event-card">
+    eventContainer.innerHTML = "";
+
+    availableCount.textContent = events.length;
+
+    // Get Registered Events
+
+    const registeredEvents = new Set();
+
+    const registrationResponse = await fetch(
+      "http://localhost:5000/api/registrations/my",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    const myRegistrations = await registrationResponse.json();
+
+    myRegistrations.forEach((item) => {
+      registeredEvents.add(item.event._id);
+    });
+
+    // Calculate Countdown
+
+    const today = new Date();
+
+    events.forEach((event) => {
+      const eventDate = new Date(event.date);
+
+      const diffTime = eventDate - today;
+
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      let countdown = "";
+
+      if (diffDays > 0) {
+        countdown = `⏳ Starts in ${diffDays} Days`;
+      } else if (diffDays === 0) {
+        countdown = "🔥 Happening Today";
+      } else {
+        countdown = "❌ Event Ended";
+      }
+
+      eventContainer.innerHTML += `
+
+           <div class="event-card" data-location="${event.location.toLowerCase()}">
 
                 <h3>${event.title}</h3>
 
@@ -93,133 +182,99 @@ async function loadEvents() {
 
                 <p>📅 ${new Date(event.date).toLocaleDateString()}</p>
 
+                <p class="countdown">${countdown}</p>   
+
                 <p>📍 ${event.location}</p>
 
                 <p>👥 Capacity : ${event.capacity}</p>
 
                 <button
-                    class="registerBtn"
-                    data-id="${event._id}">
+                  class="registerBtn ${registeredEvents.has(event._id) ? "registered" : ""}"
 
-                    Register Now
+                 data-id="${event._id}"
+
+                 ${registeredEvents.has(event._id) ? "disabled" : ""}>
+
+                 ${registeredEvents.has(event._id) ? "✅ Registered" : "Register Now"}   
 
                 </button>
 
             </div>
 
             `;
-
-        });
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-    }
-
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
-
-
 
 // =====================================
 // Register Event
 // =====================================
 
 document.addEventListener("click", async (e) => {
+  if (!e.target.classList.contains("registerBtn")) return;
 
-    if (!e.target.classList.contains("registerBtn")) return;
+  const eventId = e.target.dataset.id;
 
-    const eventId = e.target.dataset.id;
+  try {
+    const response = await fetch("http://localhost:5000/api/registrations", {
+      method: "POST",
 
-    try {
+      headers: {
+        "Content-Type": "application/json",
 
-        const response = await fetch("http://localhost:5000/api/registrations", {
+        Authorization: `Bearer ${token}`,
+      },
 
-            method: "POST",
+      body: JSON.stringify({
+        event: eventId,
+      }),
+    });
 
-            headers: {
+    const data = await response.json();
 
-                "Content-Type": "application/json",
+    showToast(data.message, response.ok ? "success" : "error");
 
-                "Authorization": `Bearer ${token}`
+    if (response.ok) {
+      loadEvents();
 
-            },
-
-            body: JSON.stringify({
-
-                event: eventId
-
-            })
-
-        });
-
-        const data = await response.json();
-
-        alert(data.message);
-
-        if (response.ok) {
-
-            loadEvents();
-
-            loadRegistrations();
-
-        }
-
+      loadRegistrations();
     }
+  } catch (error) {
+    console.log(error);
 
-    catch (error) {
-
-        console.log(error);
-
-        alert("Registration Failed");
-
-    }
-
+    alert("Registration Failed");
+  }
 });
-
-
-
 
 // =====================================
 // Load My Registrations
 // =====================================
 
 async function loadRegistrations() {
+  try {
+    const response = await fetch("http://localhost:5000/api/registrations/my", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    try {
+    const registrations = await response.json();
+    console.log("Registrations:", registrations);
 
-        const response = await fetch(
-            "http://localhost:5000/api/registrations/my",
-            {
+    const registrationContainer = document.getElementById(
+      "registrationContainer",
+    );
 
-                headers: {
+    const registeredCount = document.getElementById("registeredCount");
 
-                    "Authorization": `Bearer ${token}`
+    registrationContainer.innerHTML = "";
 
-                }
+    registeredCount.textContent = registrations.length;
 
-            }
-        );
-
-        const registrations = await response.json();
-        console.log("Registrations:", registrations);
-       
-
-        const registrationContainer =
-            document.getElementById("registrationContainer");
-
-        const registeredCount =
-            document.getElementById("registeredCount");
-
-        registrationContainer.innerHTML = "";
-
-        registeredCount.textContent = registrations.length;
-
-        registrations.forEach(registration => {
-
-            registrationContainer.innerHTML += `
+    registrations.forEach((registration) => {
+      registrationContainer.innerHTML += `
 
             <div class="registration-card">
 
@@ -240,79 +295,98 @@ async function loadRegistrations() {
             </div>
 
             `;
-
-        });
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
-
 
 // =====================================
 // Cancel Registration
 // =====================================
 
 document.addEventListener("click", async (e) => {
+  if (!e.target.classList.contains("cancelBtn")) return;
 
-    if (!e.target.classList.contains("cancelBtn")) return;
+  const registrationId = e.target.dataset.id;
 
-    const registrationId = e.target.dataset.id;
+  const confirmCancel = confirm(
+    "Are you sure you want to cancel this registration?",
+  );
 
-    const confirmCancel = confirm(
-        "Are you sure you want to cancel this registration?"
+  if (!confirmCancel) return;
+
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/registrations/${registrationId}`,
+      {
+        method: "DELETE",
+
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
     );
 
-    if (!confirmCancel) return;
+    const data = await response.json();
 
-    try {
+    showToast(data.message, response.ok ? "success" : "error");
 
-        const response = await fetch(
-            `http://localhost:5000/api/registrations/${registrationId}`,
-            {
+    if (response.ok) {
+      loadEvents();
 
-                method: "DELETE",
-
-                headers: {
-
-                    "Authorization": `Bearer ${token}`
-
-                }
-
-            }
-        );
-
-        const data = await response.json();
-
-        alert(data.message);
-
-        if (response.ok) {
-
-            loadEvents();
-
-            loadRegistrations();
-
-        }
-
+      loadRegistrations();
     }
+  } catch (error) {
+    console.log(error);
 
-    catch (error) {
-
-        console.log(error);
-
-        alert("Something went wrong!");
-
-    }
-
+    alert("Something went wrong!");
+  }
 });
+
+// =====================================
+// Live Event Search
+// =====================================
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", () => {
+  const keyword = searchInput.value.toLowerCase();
+
+  const cards = document.querySelectorAll(".event-card");
+
+  cards.forEach((card) => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+
+    if (title.includes(keyword)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+
+// ================= Filter by Location =================
+// ================= Filter by Location =================
+
+locationFilter.addEventListener("change", () => {
+  const selectedLocation = locationFilter.value.toLowerCase();
+
+  const cards = document.querySelectorAll(".event-card");
+
+  cards.forEach((card) => {
+    const cardLocation = card.dataset.location;
+
+    if (selectedLocation === "all" || cardLocation === selectedLocation) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+
 // Initial Load
 
 loadEvents();
 
 loadRegistrations();
-

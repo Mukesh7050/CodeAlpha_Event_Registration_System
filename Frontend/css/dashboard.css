@@ -142,6 +142,34 @@ body {
   line-height: 2.5;
 }
 
+/* ================= HERO ================= */
+
+.hero-left h3 {
+  color: #38bdf8;
+
+  font-size: 20px;
+
+  font-weight: 550;
+
+  margin-bottom: 10px;
+}
+
+.hero-left h1 {
+  font-size: 25px;
+
+  font-weight: 550;
+
+  margin-bottom: 15px;
+}
+
+.hero-left p {
+  color: #cbd5e1;
+
+  font-size: 18px;
+
+  line-height: 1.6;
+}
+
 /* ===========================
    STATS
 =========================== */
@@ -204,33 +232,27 @@ body {
   margin-bottom: 35px;
 } */
 
+.section-title {
+  margin-bottom: 30px;
 
-.section-title{
-
-    margin-bottom:30px;
-
-    position:relative;
-
+  position: relative;
 }
 
-.section-title::after{
+.section-title::after {
+  content: "";
 
-    content:"";
+  width: 227px;
 
-    width:227px;
+  height: 4px;
 
-    height:4px;
+  background: #38bdf8;
 
-    background:#38bdf8;
+  display: block;
 
-    display:block;
+  margin-top: 8px;
 
-    margin-top:8px;
-
-    border-radius:10px;
-
+  border-radius: 10px;
 }
-
 
 .section-title h2 {
   font-size: 26px;
@@ -510,6 +532,18 @@ footer p {
     font-size: 15px;
   }
 
+  .hero-left h3 {
+    font-size: 18px;
+  }
+
+  .hero-left h1 {
+    font-size: 30px;
+  }
+
+  .hero-left p {
+    font-size: 15px;
+  }
+
   /* Stats */
 
   .stats {
@@ -524,20 +558,26 @@ footer p {
     padding: 40px 20px;
   }
 
-  .section-title h2{
+  .section-title h2 {
+    font-size: 22px;
 
-    font-size:22px;
-
-    font-weight:600;
+    font-weight: 600;
     padding-left: 10px;
-
-}
+  }
 
   /* Cards */
 
   #eventContainer,
   #registrationContainer {
     grid-template-columns: 1fr;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .filter-box {
+    width: 100%;
   }
 }
 
@@ -583,4 +623,162 @@ footer p {
 
     font-size: 15px;
   }
+}
+
+.registered {
+  background: #16a34a !important;
+
+  cursor: not-allowed;
+
+  opacity: 0.9;
+}
+
+.registered:hover {
+  background: #16a34a !important;
+}
+
+/* ================= Toast Notification ================= */
+
+.toast {
+  position: fixed;
+
+  top: 25px;
+
+  right: -400px;
+
+  background: #16a34a;
+
+  color: white;
+
+  padding: 16px 28px;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+  transition: 0.4s;
+
+  z-index: 9999;
+}
+
+.toast.show {
+  right: 25px;
+}
+
+.toast.error {
+  background: #ef4444;
+}
+
+.toast.success {
+  background: #16a34a;
+}
+
+/* ================= Search Box ================= */
+
+.search-box {
+  width: 230px;
+
+  max-width: 20%;
+
+  margin: 20px 0 30px;
+}
+
+.search-box input {
+  width: 100%;
+
+  padding: 14px 18px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 12px;
+
+  background: #1e293b;
+
+  color: white;
+
+  font-size: 16px;
+
+  border: 1px solid #334155;
+
+  transition: 0.3s;
+}
+
+.search-box input::placeholder {
+  color: #94a3b8;
+}
+
+.search-box input:focus {
+  border-color: #38bdf8;
+
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* ================= Countdown ================= */
+
+.countdown {
+  color: #fbbf24;
+
+  font-weight: 600;
+
+  margin: 8px 0;
+
+  font-size: 15px;
+}
+
+/* ================= Search + Filter ================= */
+
+.search-container {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 20px 0 30px;
+}
+
+.search-box {
+  flex: 1;
+}
+
+.filter-box {
+  width: 230px;
+}
+
+.filter-box select {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 12px;
+
+  background: #1e293b;
+
+  color: white;
+
+  font-size: 15px;
+
+  border: 1px solid #334155;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.filter-box select:focus {
+  border-color: #38bdf8;
+
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
