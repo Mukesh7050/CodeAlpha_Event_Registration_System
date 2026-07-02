@@ -1,4 +1,4 @@
-const API_URL_URL = "https://codealpha-event-registration-system-qxlu.onrender.com";
+const API_URL = "https://codealpha-event-registration-system-qxlu.onrender.com";
 // ==========================
 // Load Events
 // ==========================
