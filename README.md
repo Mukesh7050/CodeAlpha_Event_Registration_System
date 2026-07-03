@@ -27,6 +27,15 @@ https://github.com/Mukesh7050/CodeAlpha_Event_Registration_System
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/c2768965-169a-4c76-aa8c-f0291ae8167d" />
 
 
+<img width="1920" height="1095" alt="Screenshot (386)" src="https://github.com/user-attachments/assets/345f7dc7-ea22-4b72-a1fc-a2790d7c96ab" />
+
+<img width="1920" height="1097" alt="Screenshot (387)" src="https://github.com/user-attachments/assets/59ee3b68-fee1-479c-a117-60815b73d1e3" />
+
+<img width="1886" height="1071" alt="Screenshot (388)" src="https://github.com/user-attachments/assets/4f760f4e-8648-4eff-9175-ebfacaaee8db" />
+
+
+
+
 
 > More screenshots will be added soon.
 
