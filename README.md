@@ -6,16 +6,29 @@ A responsive Full Stack Event Registration System developed as part of the **Cod
 
 ---
 
+# 🌐 Live Demo
+
+### 🚀 Frontend (Netlify)
+
+https://codealpha-event-registration-system.netlify.app/
+
+### ⚙️ Backend API (Render)
+
+https://codealpha-event-registration-system-qxlu.onrender.com
+
+### 📂 GitHub Repository
+
+https://github.com/Mukesh7050/CodeAlpha_Event_Registration_System
+
+---
+
 ## 📸 Project Preview
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/c2768965-169a-4c76-aa8c-f0291ae8167d" />
 
 
 
-
-
-
-> Screenshots will be added soon.
+> More screenshots will be added soon.
 
 ---
 
@@ -37,6 +50,9 @@ A responsive Full Stack Event Registration System developed as part of the **Cod
 - Register for Events
 - Prevent Duplicate Registration
 - Event Capacity Validation
+- Live Event Search
+- Filter Events by Location
+- Event Countdown Timer
 
 ---
 
@@ -54,15 +70,16 @@ A responsive Full Stack Event Registration System developed as part of the **Cod
 - Responsive Dashboard
 - Mobile Hamburger Menu
 - Register & Cancel Buttons
+- Toast Notifications
 - Professional Dark UI
 
 ---
 
-## ⚙ Backend
+## ⚙️ Backend
 
 - REST API
 - Express.js
-- MongoDB
+- MongoDB Atlas
 - JWT Authentication
 - Mongoose Models
 
@@ -83,12 +100,18 @@ A responsive Full Stack Event Registration System developed as part of the **Cod
 
 ### Database
 
-- MongoDB
+- MongoDB Atlas
+- Mongoose
 
 ### Authentication
 
 - JWT
 - bcryptjs
+
+### Deployment
+
+- Netlify
+- Render
 
 ---
 
@@ -167,15 +190,13 @@ npm start
 
 ## Frontend
 
-Simply open
+Open
 
 ```
 Frontend/index.html
 ```
 
-or use
-
-Live Server Extension.
+using Live Server.
 
 ---
 
@@ -197,6 +218,8 @@ POST /api/users/login
 GET /api/events
 
 POST /api/events
+
+GET /api/events/:id
 ```
 
 ---
@@ -215,13 +238,14 @@ DELETE /api/registrations/:id
 
 # ⭐ Future Improvements
 
-- Live Search
-- Filter by Location
-- Event Countdown
-- Profile Dropdown
-- Notification Panel
-- Loading Spinner
-- Dark Theme Improvements
+- Admin Dashboard
+- Event Editing
+- Event Image Upload
+- Email Notifications
+- QR Code Ticket
+- Payment Gateway
+- Event Categories
+- User Profile
 
 ---
 
@@ -237,9 +261,19 @@ Developed for
 
 **Mukesh Kumar**
 
-B.Tech Student
+🎓 B.Tech Student
 
-Guru Ghasidas Vishwavidyalaya
+🏫 Guru Ghasidas Vishwavidyalaya
+
+### 🔗 Connect with Me
+
+**GitHub**
+
+https://github.com/Mukesh7050
+
+**LinkedIn**
+
+https://www.linkedin.com/in/mukesh9631?utm_source=share_via&utm_content=profile&utm_medium=member_android
 
 ---
 
